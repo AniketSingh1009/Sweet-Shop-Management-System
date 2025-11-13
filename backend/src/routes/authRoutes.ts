@@ -1,12 +1,8 @@
 import { Router } from "express";
+import { register } from "../controllers/authController";
 
 const router = Router();
 
-router.post("/register", (req, res) => {
-  // Minimal implementation for GREEN phase
-  return res.status(201).json({
-    token: "dummy-token"
-  });
-});
+router.post("/register", register);
 
 export default router;

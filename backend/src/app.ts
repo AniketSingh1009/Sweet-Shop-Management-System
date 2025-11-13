@@ -1,5 +1,5 @@
 import express from "express";
-import authRoutes from "./routes/authRoutes"; // IMPORTANT: .js extension for ESM output
+import authRoutes from "./routes/authRoutes";
 
 const app = express();
 
