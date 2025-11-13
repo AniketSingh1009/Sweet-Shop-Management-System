@@ -1,12 +1,10 @@
 import express from "express";
+import authRoutes from "./routes/authRoutes"; // IMPORTANT: .js extension for ESM output
 
 const app = express();
 
 app.use(express.json());
 
-// Temporary route so app doesn't crash
-app.get("/", (_req, res) => {
-  res.send("Sweet Shop API running");
-});
+app.use("/api/auth", authRoutes);
 
 export default app;
