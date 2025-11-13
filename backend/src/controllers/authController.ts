@@ -6,3 +6,9 @@ export const register = (_req: Request, res: Response) => {
     token: "dummy-token"
   });
 };
+
+export const login = (_req: Request, res: Response) => {
+  return res.status(200).json({
+    token: "dummy-token"
+  });
+};
