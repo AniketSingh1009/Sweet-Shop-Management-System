@@ -1,8 +1,15 @@
 import request from "supertest";
 import app from "../app";
-import { resetUsers } from "../repositories/userRepository";
+import { db } from "../config/db";
 
-beforeEach(() => resetUsers());
+beforeEach(async () => {
+  await db.query("DELETE FROM users");
+});
+
+afterAll(async () => {
+  await db.end();
+});
+
 
 const user = {
   email: "test@example.com",
@@ -22,6 +29,12 @@ describe("Auth Register", () => {
 
 describe("Auth Login", () => {
   it("should login a user and return 200 + token", async () => {
+    // First register the user
+    await request(app)
+      .post("/api/auth/register")
+      .send(user);
+
+    // Then login
     const res = await request(app)
       .post("/api/auth/login")
       .send(user);

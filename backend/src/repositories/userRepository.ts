@@ -1,17 +1,25 @@
+import { db } from "../config/db";
 import { User } from "../types/User";
 
-let users: User[] = [];
+export const findUserByEmail = async (email: string): Promise<User | null> => {
+  console.log("FIND USER:", email);
 
-export const resetUsers = () => {
-  users = [];
+  const result = await db.query(
+    "SELECT email, password FROM users WHERE email = $1 LIMIT 1",
+    [email]
+  );
+
+  if (result.rows.length === 0) return null;
+
+  return {
+    email: result.rows[0].email,
+    password: result.rows[0].password,
+  };
 };
 
-
-export const findUserByEmail = (email: string): User | undefined => {
-  return users.find((u) => u.email === email);
+export const saveUser = async (user: User): Promise<void> => {
+  await db.query(
+    "INSERT INTO users (email, password) VALUES ($1, $2)",
+    [user.email, user.password]
+  );
 };
-
-export const saveUser = (user: User): void => {
-  users.push(user);
-};
-export { users };
