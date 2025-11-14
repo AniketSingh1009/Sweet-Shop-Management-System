@@ -17,6 +17,10 @@ export const addSweet = async (req: Request, res: Response) => {
 };
 
 export const getSweets = async (req: Request, res: Response) => {
-  const sweets = await getAllSweets();
-  return res.status(200).json(sweets);
+  try {
+    const sweets = await getAllSweets();
+    return res.status(200).json(sweets);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to retrieve sweets" });
+  }
 };
