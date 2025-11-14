@@ -102,27 +102,38 @@ export const deleteSweet = async (req: Request, res: Response) => {
 };
 
 export const purchaseSweet = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { quantity } = req.body;
+  try {
+    const { id } = req.params;
+    const { quantity } = req.body;
 
-  if (!quantity) {
-    return res.status(400).json({ error: "Quantity is required" });
+    // Validate quantity is provided
+    if (!quantity) {
+      return res.status(400).json({ error: "Quantity is required" });
+    }
+
+    // Validate quantity is a positive integer
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      return res.status(400).json({ error: "Quantity must be a positive integer" });
+    }
+
+    // Validate sweet ID
+    const sweetId = parseInt(id);
+    if (isNaN(sweetId)) {
+      return res.status(400).json({ error: "Invalid sweet ID" });
+    }
+
+    const updatedSweet = await purchaseSweetFromDb(sweetId, quantity);
+
+    if (!updatedSweet) {
+      return res.status(404).json({ error: "Sweet not found" });
+    }
+
+    if ("error" in updatedSweet && updatedSweet.error === "insufficient") {
+      return res.status(400).json({ error: "Insufficient stock" });
+    }
+
+    return res.status(200).json({ message: "Purchase successful", sweet: updatedSweet });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to process purchase" });
   }
-
-  if (!Number.isInteger(quantity) || quantity <= 0) {
-    return res.status(400).json({ error: "Quantity must be a positive integer" });
-  }
-
-  const sweetId = parseInt(id);
-  const updatedSweet = await purchaseSweetFromDb(sweetId, quantity);
-
-  if (!updatedSweet) {
-    return res.status(404).json({ error: "Sweet not found" });
-  }
-
-  if ("error" in updatedSweet && updatedSweet.error === "insufficient") {
-    return res.status(400).json({ error: "Insufficient stock" });
-  }
-
-  return res.status(200).json({ message: "Purchase successful", sweet: updatedSweet });
 };
