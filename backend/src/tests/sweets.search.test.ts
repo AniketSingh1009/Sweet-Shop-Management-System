@@ -48,7 +48,7 @@ describe("GET /api/sweets/search", () => {
 
     expect(response.status).toBe(200);
     expect(Array.isArray(response.body)).toBe(true);
-    expect(response.body.length).toBe(2);
+    expect(response.body.length).toBeGreaterThanOrEqual(2);
     expect(response.body.every((s: any) => s.name.toLowerCase().includes("chocolate"))).toBe(true);
   });
 

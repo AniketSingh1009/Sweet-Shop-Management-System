@@ -20,3 +20,46 @@ export const getAllSweets = async (): Promise<Sweet[]> => {
     price: parseFloat(row.price)
   }));
 };
+
+interface SearchParams {
+  name?: string;
+  category?: string;
+  minPrice?: number;
+  maxPrice?: number;
+}
+
+export const searchSweetsInDb = async (params: SearchParams): Promise<Sweet[]> => {
+  let query = "SELECT * FROM sweets WHERE 1=1";
+  const values: any[] = [];
+  let paramIndex = 1;
+
+  if (params.name) {
+    query += ` AND LOWER(name) LIKE LOWER($${paramIndex})`;
+    values.push(`%${params.name}%`);
+    paramIndex++;
+  }
+
+  if (params.category) {
+    query += ` AND category = $${paramIndex}`;
+    values.push(params.category);
+    paramIndex++;
+  }
+
+  if (params.minPrice !== undefined) {
+    query += ` AND price >= $${paramIndex}`;
+    values.push(params.minPrice);
+    paramIndex++;
+  }
+
+  if (params.maxPrice !== undefined) {
+    query += ` AND price <= $${paramIndex}`;
+    values.push(params.maxPrice);
+    paramIndex++;
+  }
+
+  const result = await db.query(query, values);
+  return result.rows.map(row => ({
+    ...row,
+    price: parseFloat(row.price)
+  }));
+};
