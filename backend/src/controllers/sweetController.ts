@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createSweet, getAllSweets, searchSweetsInDb } from "../repositories/sweetRepository";
+import { createSweet, getAllSweets, searchSweetsInDb, updateSweetInDb } from "../repositories/sweetRepository";
 
 export const addSweet = async (req: Request, res: Response) => {
   try {
@@ -41,4 +41,26 @@ export const searchSweets = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({ error: "Failed to search sweets" });
   }
+};
+
+export const updateSweet = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { name, category, price, quantity_in_stock } = req.body;
+
+  if (price !== undefined && isNaN(parseFloat(price))) {
+    return res.status(400).json({ error: "Invalid price value" });
+  }
+
+  const updatedSweet = await updateSweetInDb(parseInt(id), {
+    name,
+    category,
+    price,
+    quantity_in_stock
+  });
+
+  if (!updatedSweet) {
+    return res.status(404).json({ error: "Sweet not found" });
+  }
+
+  return res.status(200).json(updatedSweet);
 };

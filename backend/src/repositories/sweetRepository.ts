@@ -63,3 +63,63 @@ export const searchSweetsInDb = async (params: SearchParams): Promise<Sweet[]> =
     price: parseFloat(row.price)
   }));
 };
+
+interface UpdateSweetParams {
+  name?: string;
+  category?: string;
+  price?: number;
+  quantity_in_stock?: number;
+}
+
+export const updateSweetInDb = async (id: number, params: UpdateSweetParams): Promise<Sweet | null> => {
+  const updates: string[] = [];
+  const values: any[] = [];
+  let paramIndex = 1;
+
+  if (params.name !== undefined) {
+    updates.push(`name = $${paramIndex}`);
+    values.push(params.name);
+    paramIndex++;
+  }
+
+  if (params.category !== undefined) {
+    updates.push(`category = $${paramIndex}`);
+    values.push(params.category);
+    paramIndex++;
+  }
+
+  if (params.price !== undefined) {
+    updates.push(`price = $${paramIndex}`);
+    values.push(params.price);
+    paramIndex++;
+  }
+
+  if (params.quantity_in_stock !== undefined) {
+    updates.push(`quantity_in_stock = $${paramIndex}`);
+    values.push(params.quantity_in_stock);
+    paramIndex++;
+  }
+
+  if (updates.length === 0) {
+    const result = await db.query("SELECT * FROM sweets WHERE id = $1", [id]);
+    if (result.rows.length === 0) return null;
+    return {
+      ...result.rows[0],
+      price: parseFloat(result.rows[0].price)
+    };
+  }
+
+  values.push(id);
+  const query = `UPDATE sweets SET ${updates.join(", ")} WHERE id = $${paramIndex} RETURNING *`;
+
+  const result = await db.query(query, values);
+  
+  if (result.rows.length === 0) {
+    return null;
+  }
+
+  return {
+    ...result.rows[0],
+    price: parseFloat(result.rows[0].price)
+  };
+};
