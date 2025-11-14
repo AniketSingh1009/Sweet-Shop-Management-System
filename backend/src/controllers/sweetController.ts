@@ -44,23 +44,38 @@ export const searchSweets = async (req: Request, res: Response) => {
 };
 
 export const updateSweet = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { name, category, price, quantity_in_stock } = req.body;
+  try {
+    const { id } = req.params;
+    const { name, category, price, quantity_in_stock } = req.body;
 
-  if (price !== undefined && isNaN(parseFloat(price))) {
-    return res.status(400).json({ error: "Invalid price value" });
+    // Validate price if provided
+    if (price !== undefined && isNaN(parseFloat(price))) {
+      return res.status(400).json({ error: "Invalid price value" });
+    }
+
+    // Validate quantity_in_stock if provided
+    if (quantity_in_stock !== undefined && (!Number.isInteger(quantity_in_stock) || quantity_in_stock < 0)) {
+      return res.status(400).json({ error: "Invalid quantity_in_stock value" });
+    }
+
+    const sweetId = parseInt(id);
+    if (isNaN(sweetId)) {
+      return res.status(400).json({ error: "Invalid sweet ID" });
+    }
+
+    const updatedSweet = await updateSweetInDb(sweetId, {
+      name,
+      category,
+      price,
+      quantity_in_stock
+    });
+
+    if (!updatedSweet) {
+      return res.status(404).json({ error: "Sweet not found" });
+    }
+
+    return res.status(200).json(updatedSweet);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to update sweet" });
   }
-
-  const updatedSweet = await updateSweetInDb(parseInt(id), {
-    name,
-    category,
-    price,
-    quantity_in_stock
-  });
-
-  if (!updatedSweet) {
-    return res.status(404).json({ error: "Sweet not found" });
-  }
-
-  return res.status(200).json(updatedSweet);
 };
