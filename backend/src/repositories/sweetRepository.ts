@@ -155,3 +155,19 @@ export const purchaseSweetFromDb = async (id: number, quantity: number): Promise
     price: parseFloat(result.rows[0].price)
   };
 };
+
+export const restockSweetInDb = async (id: number, quantity: number): Promise<Sweet | null> => {
+  const result = await db.query(
+    "UPDATE sweets SET quantity_in_stock = quantity_in_stock + $1 WHERE id = $2 RETURNING *",
+    [quantity, id]
+  );
+
+  if (result.rows.length === 0) {
+    return null;
+  }
+
+  return {
+    ...result.rows[0],
+    price: parseFloat(result.rows[0].price)
+  };
+};
