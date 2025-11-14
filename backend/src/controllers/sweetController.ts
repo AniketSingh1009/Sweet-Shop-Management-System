@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createSweet, getAllSweets, searchSweetsInDb, updateSweetInDb } from "../repositories/sweetRepository";
+import { createSweet, getAllSweets, searchSweetsInDb, updateSweetInDb, deleteSweetFromDb } from "../repositories/sweetRepository";
 
 export const addSweet = async (req: Request, res: Response) => {
   try {
@@ -78,4 +78,17 @@ export const updateSweet = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({ error: "Failed to update sweet" });
   }
+};
+
+export const deleteSweet = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const sweetId = parseInt(id);
+
+  const deleted = await deleteSweetFromDb(sweetId);
+
+  if (!deleted) {
+    return res.status(404).json({ error: "Sweet not found" });
+  }
+
+  return res.status(200).json({ message: "Sweet deleted successfully" });
 };

@@ -27,7 +27,7 @@ export const loginUser = async (data: { email: string; password: string }) => {
   const match = await bcrypt.compare(password, user.password);
   if (!match) return { error: "invalid" };
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET || "test-secret");
+  const token = jwt.sign({ email, role: user.role || "user" }, process.env.JWT_SECRET || "test-secret");
 
   return { token };
 };

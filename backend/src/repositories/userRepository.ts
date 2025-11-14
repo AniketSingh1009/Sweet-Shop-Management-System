@@ -5,7 +5,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
   console.log("FIND USER:", email);
 
   const result = await db.query(
-    "SELECT email, password FROM users WHERE email = $1 LIMIT 1",
+    "SELECT email, password, role FROM users WHERE email = $1 LIMIT 1",
     [email]
   );
 
@@ -14,6 +14,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
   return {
     email: result.rows[0].email,
     password: result.rows[0].password,
+    role: result.rows[0].role,
   };
 };
 

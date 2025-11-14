@@ -70,7 +70,7 @@ describe("DELETE /api/sweets/:id", () => {
     // Add another sweet for this test
     const result = await db.query(
       "INSERT INTO sweets (name, category, price, quantity_in_stock) VALUES ($1, $2, $3, $4) RETURNING id",
-      ["Another Sweet", "Candy", 1.99, 30]
+      ["Another Sweet To Test", "Candy", 1.99, 30]
     );
     const sweetId = result.rows[0].id;
 

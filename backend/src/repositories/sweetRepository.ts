@@ -123,3 +123,8 @@ export const updateSweetInDb = async (id: number, params: UpdateSweetParams): Pr
     price: parseFloat(result.rows[0].price)
   };
 };
+
+export const deleteSweetFromDb = async (id: number): Promise<boolean> => {
+  const result = await db.query("DELETE FROM sweets WHERE id = $1 RETURNING *", [id]);
+  return result.rows.length > 0;
+};
