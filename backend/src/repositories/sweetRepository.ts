@@ -12,3 +12,11 @@ export const createSweet = async (sweet: Omit<Sweet, "id">): Promise<Sweet> => {
     price: parseFloat(row.price)
   };
 };
+
+export const getAllSweets = async (): Promise<Sweet[]> => {
+  const result = await db.query("SELECT * FROM sweets");
+  return result.rows.map(row => ({
+    ...row,
+    price: parseFloat(row.price)
+  }));
+};

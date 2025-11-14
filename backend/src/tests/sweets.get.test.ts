@@ -31,7 +31,6 @@ describe("GET /api/sweets", () => {
   afterAll(async () => {
     await db.query("DELETE FROM sweets WHERE name LIKE 'Test%'");
     await db.query("DELETE FROM users WHERE email = 'getsweets@example.com'");
-    await db.end();
   });
 
   it("should return a list of all sweets", async () => {
