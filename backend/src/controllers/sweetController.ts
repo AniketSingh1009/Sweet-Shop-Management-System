@@ -26,12 +26,19 @@ export const getSweets = async (req: Request, res: Response) => {
 };
 
 export const searchSweets = async (req: Request, res: Response) => {
-  const { name, category, minPrice, maxPrice } = req.query;
-  const sweets = await searchSweetsInDb({
-    name: name as string,
-    category: category as string,
-    minPrice: minPrice ? parseFloat(minPrice as string) : undefined,
-    maxPrice: maxPrice ? parseFloat(maxPrice as string) : undefined
-  });
-  return res.status(200).json(sweets);
+  try {
+    const { name, category, minPrice, maxPrice } = req.query;
+    
+    const searchParams = {
+      name: name as string,
+      category: category as string,
+      minPrice: minPrice ? parseFloat(minPrice as string) : undefined,
+      maxPrice: maxPrice ? parseFloat(maxPrice as string) : undefined
+    };
+
+    const sweets = await searchSweetsInDb(searchParams);
+    return res.status(200).json(sweets);
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to search sweets" });
+  }
 };
