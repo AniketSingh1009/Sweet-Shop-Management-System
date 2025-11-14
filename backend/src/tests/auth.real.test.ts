@@ -7,7 +7,8 @@ import jwt from "jsonwebtoken";
 import app from "../app";
 
 describe("Auth - real behavior (RED tests)", () => {
-  const user = { email: "realuser@example.com", password: "RealPass@123" };
+  const user = { email: "test@example.com",
+        password: "Password@123" };
 
   it("REGISTER: should return 201 and a verifiable JWT containing the email", async () => {
     const res = await request(app).post("/api/auth/register").send(user);

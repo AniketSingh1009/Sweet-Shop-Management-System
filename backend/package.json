@@ -4,9 +4,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-  "dev": "ts-node-dev --respawn src/index.ts",
-  "test": "jest --runInBand"
-},
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "test": "jest --runInBand"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "mysql2": "^3.15.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.10.1",
