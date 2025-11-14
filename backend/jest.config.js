@@ -8,5 +8,8 @@ export default {
         useESM: true
       }
     ]
-  }
+  },
+  clearMocks: false,
+  resetModules: false,
+  restoreMocks: false
 };

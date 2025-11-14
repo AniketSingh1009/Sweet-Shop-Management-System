@@ -5,6 +5,9 @@ process.env.JWT_SECRET = process.env.JWT_SECRET || "test-secret";
 import request from "supertest";
 import jwt from "jsonwebtoken";
 import app from "../app";
+import { resetUsers } from "../repositories/userRepository";
+beforeEach(() => resetUsers());
+
 
 describe("Auth - real behavior (RED tests)", () => {
   const user = { email: "test@example.com",
