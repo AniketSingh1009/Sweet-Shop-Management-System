@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createSweet, getAllSweets, searchSweetsInDb, updateSweetInDb, deleteSweetFromDb } from "../repositories/sweetRepository";
+import { createSweet, getAllSweets, searchSweetsInDb, updateSweetInDb, deleteSweetFromDb, purchaseSweetFromDb } from "../repositories/sweetRepository";
 
 export const addSweet = async (req: Request, res: Response) => {
   try {
@@ -99,4 +99,30 @@ export const deleteSweet = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(500).json({ error: "Failed to delete sweet" });
   }
+};
+
+export const purchaseSweet = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { quantity } = req.body;
+
+  if (!quantity) {
+    return res.status(400).json({ error: "Quantity is required" });
+  }
+
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    return res.status(400).json({ error: "Quantity must be a positive integer" });
+  }
+
+  const sweetId = parseInt(id);
+  const updatedSweet = await purchaseSweetFromDb(sweetId, quantity);
+
+  if (!updatedSweet) {
+    return res.status(404).json({ error: "Sweet not found" });
+  }
+
+  if ("error" in updatedSweet && updatedSweet.error === "insufficient") {
+    return res.status(400).json({ error: "Insufficient stock" });
+  }
+
+  return res.status(200).json({ message: "Purchase successful", sweet: updatedSweet });
 };

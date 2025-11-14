@@ -128,3 +128,30 @@ export const deleteSweetFromDb = async (id: number): Promise<boolean> => {
   const result = await db.query("DELETE FROM sweets WHERE id = $1 RETURNING *", [id]);
   return result.rows.length > 0;
 };
+
+export const purchaseSweetFromDb = async (id: number, quantity: number): Promise<Sweet | null | { error: string }> => {
+  // Get current sweet
+  const checkResult = await db.query("SELECT * FROM sweets WHERE id = $1", [id]);
+  
+  if (checkResult.rows.length === 0) {
+    return null;
+  }
+
+  const currentSweet = checkResult.rows[0];
+  const currentStock = currentSweet.quantity_in_stock;
+
+  if (currentStock < quantity) {
+    return { error: "insufficient" };
+  }
+
+  // Update quantity
+  const result = await db.query(
+    "UPDATE sweets SET quantity_in_stock = quantity_in_stock - $1 WHERE id = $2 RETURNING *",
+    [quantity, id]
+  );
+
+  return {
+    ...result.rows[0],
+    price: parseFloat(result.rows[0].price)
+  };
+};
