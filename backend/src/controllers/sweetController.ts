@@ -81,14 +81,22 @@ export const updateSweet = async (req: Request, res: Response) => {
 };
 
 export const deleteSweet = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const sweetId = parseInt(id);
+  try {
+    const { id } = req.params;
+    
+    const sweetId = parseInt(id);
+    if (isNaN(sweetId)) {
+      return res.status(400).json({ error: "Invalid sweet ID" });
+    }
 
-  const deleted = await deleteSweetFromDb(sweetId);
+    const deleted = await deleteSweetFromDb(sweetId);
 
-  if (!deleted) {
-    return res.status(404).json({ error: "Sweet not found" });
+    if (!deleted) {
+      return res.status(404).json({ error: "Sweet not found" });
+    }
+
+    return res.status(200).json({ message: "Sweet deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to delete sweet" });
   }
-
-  return res.status(200).json({ message: "Sweet deleted successfully" });
 };
