@@ -43,7 +43,7 @@
 
 .sweet-card-header {
   background: var(--gradient-orange);
-  padding: 32px;
+  padding: 20px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -70,7 +70,7 @@
 }
 
 .sweet-emoji {
-  font-size: 72px;
+  font-size: 48px;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   transition: transform 0.3s ease;
   position: relative;
@@ -106,34 +106,34 @@
 }
 
 .sweet-card-body {
-  padding: 24px;
+  padding: 16px;
 }
 
 .sweet-name {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--dark);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .sweet-category {
   color: var(--gray);
-  font-size: 14px;
+  font-size: 13px;
   text-transform: capitalize;
-  margin-bottom: 16px;
-}
-
-.sweet-price {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--primary);
   margin-bottom: 12px;
 }
 
+.sweet-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
 .sweet-stock {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--gray);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .stock-zero {
@@ -144,7 +144,7 @@
 .purchase-section {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .quantity-selector {
@@ -157,10 +157,10 @@
 .quantity-selector button {
   background: var(--light);
   border: 2px solid var(--border);
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -178,12 +178,12 @@
 }
 
 .quantity-selector input {
-  width: 60px;
+  width: 50px;
   text-align: center;
-  padding: 8px;
+  padding: 6px;
   border: 2px solid var(--border);
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   font-family: 'Poppins', sans-serif;
 }
@@ -192,9 +192,9 @@
   background: var(--gradient-pink);
   color: white;
   border: none;
-  padding: 14px;
+  padding: 12px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -219,10 +219,10 @@
 }
 
 .admin-actions button {
-  padding: 10px;
+  padding: 8px;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

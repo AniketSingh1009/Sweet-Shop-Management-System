@@ -80,12 +80,46 @@
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.1);
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.password-toggle:hover {
+  background: var(--light);
+}
+
+.password-toggle:active {
+  transform: scale(0.95);
 }
 
 .btn-primary {
