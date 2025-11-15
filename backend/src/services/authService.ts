@@ -11,9 +11,12 @@ export const registerUser = async (data: { email: string; password: string }) =>
 
   const hashed = await bcrypt.hash(password, 10);
 
-  await saveUser({ email, password: hashed });
+  // Determine role based on email (admin if email contains 'admin')
+  const role = email.toLowerCase().includes('admin') ? 'admin' : 'user';
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET || "test-secret");
+  await saveUser({ email, password: hashed, role });
+
+  const token = jwt.sign({ email, role }, process.env.JWT_SECRET || "test-secret");
 
   return { token };
 };

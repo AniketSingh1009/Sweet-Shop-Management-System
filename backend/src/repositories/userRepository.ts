@@ -20,7 +20,7 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
 
 export const saveUser = async (user: User): Promise<void> => {
   await db.query(
-    "INSERT INTO users (email, password) VALUES ($1, $2)",
-    [user.email, user.password]
+    "INSERT INTO users (email, password, role) VALUES ($1, $2, $3)",
+    [user.email, user.password, user.role || 'user']
   );
 };
