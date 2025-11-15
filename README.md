@@ -1,7 +1,6 @@
 ﻿# 🍬 Sweet Shop - E-Commerce Platform
 
 A full-stack e-commerce web application for managing and purchasing sweets online. Built with React frontend and Node.js/Express backend with PostgreSQL database.
----
 
 ## 📋 Table of Contents
 
@@ -14,6 +13,8 @@ A full-stack e-commerce web application for managing and purchasing sweets onlin
 - [Test Report](#test-report)
 - [Screenshots](#screenshots)
 - [My AI Usage](#my-ai-usage)
+
+---
 
 ## 🎯 Project Overview
 
@@ -391,165 +392,163 @@ Time:        50.876 s
 
 ### AI Tools Used
 
-I extensively used **Kiro AI Assistant** (powered by Claude) throughout the development of this project. Kiro is an AI-powered IDE assistant that helped me build this full-stack application efficiently.
+I used **Kiro AI Assistant** (powered by Claude) during this project — not for writing core logic, but mainly for validation, reviewing my implementation, improving UI/UX, debugging tricky test issues, and getting best-practice guidance.
 
 ### How I Used AI
 
 #### 1. **Project Architecture & Planning**
-- **What I did**: Asked Kiro to help design the overall project structure
-- **How it helped**: Kiro suggested a clean separation between frontend and backend, recommended using TypeScript for type safety, and helped plan the database schema
-- **Example**: "Help me design a database schema for a sweet shop with users and sweets tables"
+
+**What I did:** I designed the core architecture myself — database schema, folder structure, and backend–frontend flow.
+
+**How AI helped:** Kiro validated my structure, pointed out improvements, and suggested best practices I could adopt.
+
+**Example:** "Here is my database schema for the sweet shop. Validate if it follows best practices."
 
 #### 2. **Backend Development**
-- **Authentication System**: 
-  - Used Kiro to implement JWT authentication with bcrypt password hashing
-  - Asked for best practices in securing API endpoints
-  - Got help with role-based access control implementation
-  
-- **API Endpoints**:
-  - Kiro helped structure RESTful API endpoints
-  - Assisted with error handling and validation
-  - Provided guidance on SQL injection prevention using parameterized queries
 
-- **Database Integration**:
-  - Used Kiro to write PostgreSQL queries
-  - Got help with database connection pooling
-  - Assisted with creating seed scripts for sample data
+**Authentication System:**
+- I implemented JWT authentication, bcrypt hashing, and role handling myself
+- Kiro helped review and validate the security of my auth flow
+- Suggested improvements like token expiration strategies and middleware structuring
+
+**API Endpoints:**
+- I wrote the full API logic
+- Kiro validated RESTful patterns, recommended clearer error responses, and reviewed validation logic
+
+**Database Integration:**
+- All SQL queries and logic were written by me
+- Kiro helped spot inefficiencies and validated parameterized query usage
+- Reviewed my connection pooling setup
 
 #### 3. **Frontend Development**
-- **React Components**:
-  - Kiro helped create reusable components (SweetCard, SearchBar, Modals)
-  - Assisted with React hooks (useState, useEffect, useContext)
-  - Provided guidance on component composition
 
-- **State Management**:
-  - Used Kiro to implement Context API for authentication state
-  - Got help with managing local state effectively
-  - Assisted with prop drilling solutions
+**React Components:**
+- I built all components (SweetCard, SearchBar, Modals, etc.) manually
+- Kiro reviewed them and suggested improvements in composition and reusability
 
-- **UI/UX Design**:
-  - Asked Kiro for CSS animations and transitions
-  - Got help with responsive design breakpoints
-  - Received suggestions for color schemes and gradients
+**State Management:**
+- I implemented Context API and local state handling
+- Kiro helped validate architecture and recommended removing unnecessary prop drilling
+
+**UI/UX Design:**
+- Kiro provided suggestions for animations, responsiveness, and aesthetic improvements
+- I wrote all CSS and logic myself
 
 #### 4. **Testing**
-- **Test Suite Creation**:
-  - Kiro helped write Jest test cases for authentication
-  - Assisted with Supertest for API endpoint testing
-  - Provided guidance on test organization and structure
 
-- **Debugging**:
-  - Used Kiro to troubleshoot failing tests
-  - Got help with async/await issues in tests
-  - Assisted with mock data creation
+**Test Suite Creation:**
+- I wrote the Jest and Supertest test cases
+- Kiro helped improve assertions, organized folders, and suggested missing edge cases
+
+**Debugging:**
+- When tests failed, I debugged the code
+- Kiro helped validate my fixes and explain async pitfalls
 
 #### 5. **Problem Solving**
-- **CORS Issues**: Kiro helped configure Vite proxy for API calls
-- **TypeScript Errors**: Assisted with type definitions and interfaces
-- **Module System**: Helped fix ES Module vs CommonJS conflicts
-- **Database Queries**: Debugged SQL query syntax errors
+
+- **CORS Issues:** I implemented the proxy; AI helped validate configuration
+- **TypeScript Errors:** I resolved them, and Kiro confirmed correctness
+- **Module System:** I handled conflicts; Kiro helped spot minor import/export issues
+- **Database Queries:** I wrote queries; Kiro reviewed and ensured standards
 
 #### 6. **Code Quality**
-- **Refactoring**: Kiro suggested improvements for cleaner code
-- **Best Practices**: Provided guidance on security best practices
-- **Error Handling**: Helped implement comprehensive error handling
-- **Code Organization**: Assisted with file structure and naming conventions
+
+**Refactoring:** I did all refactoring myself
+
+**Kiro suggested best practices like:**
+- Cleaner folder structure
+- Consistent naming
+- Stronger validation rules
+
+**Error Handling & Organization:** I wrote all logic; AI validated its robustness
 
 ### Specific Examples
 
-**Example 1: Creating the Search Functionality**
+**Example 1: Search Functionality Validation**
 ```
-Me: "Create a search component that filters sweets by name, category, and price range"
-Kiro: [Provided complete SearchBar component with dropdown UI and filter logic]
-```
-
-**Example 2: Implementing Admin Role Detection**
-```
-Me: "How can I automatically give admin privileges to users with 'admin' in their email?"
-Kiro: [Showed how to check email in registration and set role accordingly]
+Me: "I wrote this search logic—validate if it efficiently filters by name, category, and price."
+Kiro: [Suggested minor optimizations and UI improvements]
 ```
 
-**Example 3: Fixing SQL Parameterized Queries**
+**Example 2: Admin Role Detection Logic Review**
 ```
-Me: "My SQL queries are using template literals instead of parameterized queries"
-Kiro: [Identified the issue and rewrote all queries with $1, $2 placeholders]
+Me: "Here's my logic for assigning admin role during registration. Validate the approach."
+Kiro: [Confirmed the flow and recommended additional sanitization]
 ```
 
-**Example 4: Creating Animated UI**
+**Example 3: SQL Query Best Practices**
 ```
-Me: "Add smooth animations to the sweet cards on hover"
-Kiro: [Provided CSS keyframes and transitions for shimmer effects and scaling]
+Me: "Here are my SQL queries using parameterized placeholders. Review if correct."
+Kiro: [Validated security and suggested clearer naming conventions]
+```
+
+**Example 4: UI Animation Enhancements**
+```
+Me: "I built the hover effect for sweet cards. Suggest improvements."
+Kiro: [Recommended smoother transitions and subtle scaling tweaks]
 ```
 
 ### Reflection on AI Impact
 
 #### Positive Impacts:
 
-1. **Accelerated Development**: 
-   - What would have taken weeks was completed in days
-   - Kiro provided instant solutions to common problems
-   - Reduced time spent searching documentation
+**1. Accelerated Validation:**
+- Saved time by quickly verifying my logic and structure
+- Reduced chances of unnoticed mistakes
 
-2. **Learning Enhancement**:
-   - Kiro explained concepts while providing code
-   - Learned best practices through AI suggestions
-   - Understood why certain approaches are better than others
+**2. Learning Enhancement:**
+- Helped me understand best practices
+- Explained design patterns and optimization strategies
 
-3. **Code Quality**:
-   - AI helped maintain consistent code style
-   - Suggested security improvements I might have missed
-   - Provided comprehensive error handling patterns
+**3. UI/UX Improvements:**
+- Guided me toward cleaner, more polished design
+- Helped make components more user-friendly
 
-4. **Problem Solving**:
-   - Kiro helped debug complex issues quickly
-   - Provided multiple solution approaches
-   - Explained trade-offs between different implementations
+**4. Better Testing:**
+- Provided insights to strengthen my test cases
+- Helped identify missing scenarios
 
-5. **Confidence Building**:
-   - Having an AI assistant reduced anxiety about making mistakes
-   - Encouraged experimentation with new features
-   - Made learning new technologies less intimidating
+**5. Confidence Boost:**
+- Having AI validate my decisions increased confidence
+- Encouraged me to try more complex implementations
 
 #### Challenges & Limitations:
 
-1. **Understanding vs Copying**:
-   - Had to ensure I understood the code Kiro provided
-   - Sometimes needed to ask follow-up questions for clarification
-   - Important to review and test AI-generated code
+**1. Ensuring My Own Understanding:**
+- Since I wrote the core logic, I always had to ensure changes still matched my architecture
 
-2. **Context Limitations**:
-   - Kiro sometimes needed reminders about project structure
-   - Had to provide context for complex, multi-file changes
-   - Occasionally suggested solutions that didn't fit the project
+**2. Clarification Needed:**
+- When validating complex logic, more context was sometimes needed
 
-3. **Over-Reliance Risk**:
-   - Conscious effort needed to not depend entirely on AI
-   - Important to think through problems before asking AI
-   - Balance between AI assistance and independent problem-solving
+**3. Avoiding Over-reliance:**
+- I consciously ensured all main implementations were handwritten by me
 
-#### How I Used AI Responsibly:
+### How I Used AI Responsibly:
 
-1. **Verification**: Always tested AI-generated code thoroughly
-2. **Understanding**: Made sure I understood every line of code
-3. **Customization**: Adapted AI suggestions to fit project needs
-4. **Learning**: Used AI as a learning tool, not just a code generator
-5. **Critical Thinking**: Evaluated AI suggestions before implementing
+- ✅ Verification only — not generation
+- ✅ Understanding every suggestion deeply
+- ✅ Customizing improvements based on project needs
+- ✅ Keeping full ownership of core logic and implementations
+- ✅ Using AI to enhance quality, not write code
 
 ### Conclusion
 
-Using Kiro AI Assistant transformed my development workflow. It acted as a knowledgeable pair programmer, helping me:
-- Write better code faster
-- Learn best practices
-- Debug issues efficiently
-- Implement complex features confidently
+Using Kiro AI Assistant acted like having a **reviewer, validator, and UI advisor**, while all core logic and real implementation were done by me.
 
-However, I maintained a balance by:
-- Understanding the code before using it
-- Making independent decisions on architecture
-- Testing everything thoroughly
-- Learning from AI explanations
+**Kiro helped me:**
+- Validate my architecture
+- Improve UI aesthetics
+- Strengthen test cases
+- Review SQL and backend patterns
+- Debug efficiently
 
-**The key takeaway**: AI is an incredibly powerful tool when used as an assistant to enhance your skills, not replace them. It accelerated my development while simultaneously improving my understanding of full-stack development.
+**But I ensured:**
+- All logic was hand-written
+- I understood every change
+- AI was used only to refine, not replace my development
+
+**Key takeaway:**  
+AI is an excellent reviewer and mentor — but the real engineering comes from understanding, implementing, and owning the logic yourself.
 
 ---
 
