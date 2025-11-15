@@ -1,12 +1,6 @@
 ﻿# 🍬 Sweet Shop - E-Commerce Platform
 
 A full-stack e-commerce web application for managing and purchasing sweets online. Built with React frontend and Node.js/Express backend with PostgreSQL database.
-
-![Sweet Shop](https://img.shields.io/badge/status-active-success)
-![React](https://img.shields.io/badge/React-19.2.0-blue)
-![Node.js](https://img.shields.io/badge/Node.js-Express-green)
-![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)
-
 ---
 
 ## 📋 Table of Contents
@@ -20,8 +14,6 @@ A full-stack e-commerce web application for managing and purchasing sweets onlin
 - [Test Report](#test-report)
 - [Screenshots](#screenshots)
 - [My AI Usage](#my-ai-usage)
-
----
 
 ## 🎯 Project Overview
 
