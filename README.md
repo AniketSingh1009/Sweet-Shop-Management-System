@@ -384,15 +384,12 @@ Time:        50.876 s
 ![Add Sweet](screenshots/add-sweet.png)
 *Modal form for adding new sweets to inventory*
 
-### 8. Edit Sweet Modal (Admin)
-![Edit Sweet](screenshots/edit-sweet.png)
-*Modal form for updating sweet details*
 
-### 9. Statistics Dashboard
+### 8. Statistics Dashboard
 ![Statistics](screenshots/statistics.png)
 *Real-time statistics showing total sweets, in-stock items, and categories*
 
-### 10. Mobile Responsive View
+### 9. Mobile Responsive View
 ![Mobile View](screenshots/mobile-view.png)
 *Fully responsive design for mobile devices*
 
