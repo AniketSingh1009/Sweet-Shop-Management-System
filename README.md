@@ -2,6 +2,10 @@
 
 A full-stack e-commerce web application for managing and purchasing sweets online. Built with React frontend and Node.js/Express backend with PostgreSQL database.
 
+## 🌐 Live Demo
+
+**Frontend URL**: [https://sweet-shop-management-system-2b0geaare.vercel.app](https://sweet-shop-management-system-2b0geaare.vercel.app)
+
 ## 📋 Table of Contents
 
 - [Project Overview](#project-overview)
@@ -593,7 +597,20 @@ sweet_shop_project/
 
 ---
 
-## 🚀 Deployment (Optional)
+## 🚀 Deployment
+
+### Frontend Deployment
+
+The frontend is deployed on **Vercel** and accessible at:
+
+**Live URL**: [https://sweet-shop-management-system-2b0geaare.vercel.app](https://sweet-shop-management-system-2b0geaare.vercel.app)
+
+**Deployment Steps:**
+1. Connected Git repository to Vercel
+2. Set build command: `npm run build`
+3. Set output directory: `dist`
+4. Configured environment variables
+5. Automatic deployments on push
 
 ### Backend Deployment (Heroku/Railway)
 
@@ -601,14 +618,6 @@ sweet_shop_project/
 2. Set environment variables (PG_URL, JWT_SECRET)
 3. Deploy using Git or CLI
 4. Run database setup script
-
-### Frontend Deployment (Vercel/Netlify)
-
-1. Connect your Git repository
-2. Set build command: `npm run build`
-3. Set output directory: `dist`
-4. Update API base URL in frontend code
-5. Deploy
 
 ---
 
