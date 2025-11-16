@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "start": "node dist/src/index.js",
+    "start": "node migrate.js && node dist/src/index.js",
     "test": "jest --runInBand",
     "setup-db": "ts-node setup-db.ts",
+    "create-tables": "node create-tables.js",
     "seed": "ts-node seed-sweets.ts",
     "update-stock": "ts-node update-stock.ts",
+    "migrate": "node migrate.js",
     "postbuild": "cp package.json dist/ && cp -r node_modules dist/"
   },
   "keywords": [],
