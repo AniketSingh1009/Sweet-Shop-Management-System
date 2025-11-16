@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
-import axios from 'axios'
+import axios from '../config/axios'
 import Navbar from '../components/Navbar'
 import SweetCard from '../components/SweetCard'
 import AddSweetModal from '../components/AddSweetModal'

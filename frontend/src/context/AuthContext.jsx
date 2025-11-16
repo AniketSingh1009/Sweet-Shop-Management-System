@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import axios from 'axios'
+import axios from '../config/axios'
 
 const AuthContext = createContext(undefined)
 
@@ -9,13 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(localStorage.getItem('isAdmin') === 'true')
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-    } else {
-      delete axios.defaults.headers.common['Authorization']
-    }
-  }, [token])
+  // Token is now handled by axios interceptor in config/axios.js
+  // No need for useEffect here
 
   const login = async (email, password) => {
     setLoading(true)
