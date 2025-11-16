@@ -7,6 +7,7 @@
     "build": "tsc",
     "start": "node dist/src/index.js",
     "test": "jest --runInBand",
+    "setup-db": "ts-node setup-db.ts",
     "seed": "ts-node seed-sweets.ts",
     "update-stock": "ts-node update-stock.ts",
     "postbuild": "cp package.json dist/ && cp -r node_modules dist/"
@@ -22,7 +23,8 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.15.3",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

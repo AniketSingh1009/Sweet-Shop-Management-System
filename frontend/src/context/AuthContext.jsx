@@ -32,7 +32,9 @@ export const AuthProvider = ({ children }) => {
   const register = async (email, password) => {
     setLoading(true)
     try {
+      console.log('📝 Attempting registration for:', email)
       const response = await axios.post('/api/auth/register', { email, password })
+      console.log('✅ Registration response:', response)
       const { token } = response.data
       setToken(token)
       setEmail(email)
@@ -41,6 +43,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('token', token)
       localStorage.setItem('email', email)
       localStorage.setItem('isAdmin', String(adminStatus))
+      console.log('✅ Registration successful!')
+    } catch (error) {
+      console.error('❌ Registration error:', error)
+      console.error('Error response:', error.response)
+      throw error
     } finally {
       setLoading(false)
     }

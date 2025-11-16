@@ -31,7 +31,12 @@ const Register = () => {
       await register(email, password)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed')
+      console.error('Registration error:', err)
+      const errorMessage = err.response?.data?.error 
+        || err.response?.data?.message 
+        || err.message 
+        || 'Registration failed. Please try again.'
+      setError(errorMessage)
     }
   }
 
