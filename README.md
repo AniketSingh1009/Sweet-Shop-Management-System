@@ -4,7 +4,7 @@ A full-stack e-commerce web application for managing and purchasing sweets onlin
 
 ## 🌐 Live Demo
 
-**Frontend URL**: [https://sweet-shop-management-system-2b0geaare.vercel.app](https://sweet-shop-management-system-2b0geaare.vercel.app)
+**Frontend URL**: [https://sweet-shop-management-system-nu.vercel.app/login](https://sweet-shop-management-system-2b0geaare.vercel.app)
 
 ## 📋 Table of Contents
 
